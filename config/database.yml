@@ -25,8 +25,8 @@ development:
   <<: *default
   host: 192.168.1.95
   port: 5432
-  username: postgres
-  password: postgres
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASS'] %>
   database: taskapp_development
 
   # The specified database role being used to connect to postgres.
@@ -64,8 +64,8 @@ test:
   database: taskapp_test
   host: 192.168.1.95
   port: 5432
-  username: postgres
-  password: postgres
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASS'] %>
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
