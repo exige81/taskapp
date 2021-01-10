@@ -1,9 +1,21 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id           :bigint           not null, primary key
+#  name         :string           not null
+#  completed    :boolean          default(FALSE)
+#  completed_at :datetime
+#  user_id      :bigint
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
 
 one:
   name: MyString
+  user: normal_user
   completed: false
-  completed_at: 2021-01-08 11:14:28
+  completed_at: nil
 
 two:
   name: MyString

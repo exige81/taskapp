@@ -3,6 +3,7 @@ require "application_system_test_case"
 class TasksTest < ApplicationSystemTestCase
   setup do
     @task = tasks(:one)
+    sign_in users(:normal_user)
   end
 
   test "visiting the index" do
@@ -14,8 +15,6 @@ class TasksTest < ApplicationSystemTestCase
     visit tasks_url
     click_on "New Task"
 
-    check "Completed" if @task.completed
-    fill_in "Completed at", with: @task.completed_at
     fill_in "Name", with: @task.name
     click_on "Create Task"
 
@@ -28,7 +27,7 @@ class TasksTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     check "Completed" if @task.completed
-    fill_in "Completed at", with: @task.completed_at
+    # fill_in "Completed at", with: @task.completed_at
     fill_in "Name", with: @task.name
     click_on "Update Task"
 
