@@ -6,7 +6,6 @@ services:
   - postgresql
 before_install:
   - nvm install --lts
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
@@ -17,6 +16,5 @@ before_script:
 script:
   - bundle exec rake test
   - bundle exec rake test:system
-addons:
-  chrome: stable
+
   
