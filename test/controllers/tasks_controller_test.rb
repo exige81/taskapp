@@ -28,7 +28,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
       post tasks_url, params: { task: { name: @task.name } }
     end
 
-    assert_redirected_to task_url(Task.last)
+    assert_redirected_to root_url
   end
 
   test "should show task" do

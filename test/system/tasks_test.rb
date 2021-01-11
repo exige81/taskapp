@@ -19,7 +19,7 @@ class TasksTest < ApplicationSystemTestCase
     click_on "Create Task"
 
     assert_text "Task was successfully created"
-    click_on "Back"
+    assert_text @task.name
   end
 
   test "updating a Task" do
