@@ -15,14 +15,12 @@ class Task < ApplicationRecord
 
   validates :name, presence: true
 
-  def complete
-    self.completed_at = Time.now
-    self.completed = true
-  end
+  before_save :set_completed_at if :completed_changed?
 
-  def uncomplete
-    self.completed_at = nil
-    self.completed = false
-  end
+  private
+
+    def set_completed_at
+      completed ? self.completed_at = Time.zone.now : self.completed_at = nil
+    end
 
 end

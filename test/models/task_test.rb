@@ -30,20 +30,14 @@ class TaskTest < ActiveSupport::TestCase
     assert_not task.valid?
   end
 
-  test "Completed task is complete" do
-    task = Task.create( name: "complete me", user: @user)
-    task.complete
-    assert task.completed == true
-    assert_not_nil task.completed_at
-    assert task.completed?
-  end
-
-  test "Completed task can be uncompleted" do
-    task = Task.create( name: "uncompleted", user: @user)
-    task.complete
-    assert task.completed?
-    task.uncomplete
-    assert_not task.completed?
+  test "Completion of task triggers timestamp" do
+    now = Time.zone.now
+    task = Task.create( name: "Completion Test", user: @user)
+    task.completed = true
+    task.save
+    assert task.completed_at.between?(now - 1.minute, now + 1.minute)
+    task.completed = false
+    task.save
     assert_nil task.completed_at
   end
 end
