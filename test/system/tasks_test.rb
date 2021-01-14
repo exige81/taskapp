@@ -32,7 +32,6 @@ class TasksTest < ApplicationSystemTestCase
     click_on "Update Task"
 
     assert_text "Task was successfully updated"
-    click_on "Back"
   end
 
   test "destroying a Task" do

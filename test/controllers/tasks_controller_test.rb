@@ -43,7 +43,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should update task" do
     patch task_url(@task), params: { task: { name: @task.name } }
-    assert_redirected_to task_url(@task)
+    assert_redirected_to root_url
   end
 
   test "should destroy task" do
@@ -51,6 +51,6 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
       delete task_url(@task)
     end
 
-    assert_redirected_to tasks_url
+    assert_redirected_to root_url
   end
 end
