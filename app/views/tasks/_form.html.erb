@@ -16,10 +16,12 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
-    <%= form.label :completed %>
-    <%= form.check_box :completed %>
-  </div>
+  <% if task.persisted? %>
+    <div class="field">
+      <%= form.label :completed %>
+      <%= form.check_box :completed %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
