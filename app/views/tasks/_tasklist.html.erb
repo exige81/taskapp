@@ -10,7 +10,7 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.name %></td>
+        <td class="<%= class_names(completed: task.completed?) %>"><%= task.name %></td>
         <td><%= check_box_tag name="completed?", task.completed, task.completed  %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>

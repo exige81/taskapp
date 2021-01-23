@@ -25,6 +25,7 @@ class StandardFlowTest < ActionDispatch::IntegrationTest
   test "Show tasks on user page" do
     get root_path
     assert_select 'table.tasklist'
+    assert_select 'td.completed', count: 1
     assert_select 'a[href=?]', edit_task_path( tasks(:one) ), count: 1
     assert_select 'a[href=?]', task_path( tasks(:one) ), text: "Destroy", count: 1
   end
