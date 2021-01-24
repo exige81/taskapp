@@ -17,6 +17,8 @@ class Task < ApplicationRecord
 
   before_save :set_completed_at if :completed_changed?
 
+  default_scope { order(created_at: :desc)}
+
   private
 
     def set_completed_at

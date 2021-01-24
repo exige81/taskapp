@@ -40,4 +40,10 @@ class TaskTest < ActiveSupport::TestCase
     task.save
     assert_nil task.completed_at
   end
+
+  test "Has default Scope" do
+    oldest = Task.create(name: "Oldest", user: @user)
+    newest = Task.create(name: "Newest", user: @user)
+    assert @user.tasks.first.name == "Newest"
+  end
 end
