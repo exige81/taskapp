@@ -3,18 +3,20 @@
     <tr>
       <th>Name</th>
       <th>Completed</th>
-      <th colspan="2"></th>
+      <th>Completed at</th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @tasks.each do |task| %>
-      <tr>
+      <%= content_tag :tr, id: dom_id(task) do %>
         <td class="<%= class_names(completed: task.completed?) %>"><%= task.name %></td>
         <td><%= check_box_tag(nil, nil, task.completed?, data: { reflex: "click->ExampleReflex#toggle", id: task.id })  %></td>
+        <td><%= task.completed_at %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

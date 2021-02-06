@@ -31,6 +31,8 @@ class ExampleReflex < ApplicationReflex
   #   end
   #
   # Learn more at: https://docs.stimulusreflex.com/reflexes#reflex-classes
+  delegate :current_user, to: :connection
+
   def toggle
     task = Task.find(element.dataset[:id])
     task.update(completed: (task.completed? ? false : true ))
