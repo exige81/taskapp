@@ -22,7 +22,7 @@ class Task < ApplicationRecord
   private
 
     def set_completed_at
-      completed ? self.completed_at = Time.zone.now : self.completed_at = nil
+      self.completed_at = completed ? Time.zone.now : nil
     end
 
 end

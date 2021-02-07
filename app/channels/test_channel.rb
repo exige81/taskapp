@@ -3,7 +3,7 @@ class TestChannel < ApplicationCable::Channel
     stream_from "test"
   end
 
-  def unsubscribed
+  def receive(data)
     puts data["message"]
     ActionCable.server.broadcast("test", "ActionCable is connected")
   end
