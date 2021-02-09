@@ -2,29 +2,41 @@ require "application_system_test_case"
 
 class TasksTest < ApplicationSystemTestCase
   setup do
-    # @task = tasks(:one)
-    # sign_in users(:normal_user)
+    @task = tasks(:one)
+    @user = users(:normal_user)
+    sign_in @user
   end
 
   test "visit root url" do
+    sign_out @user
     visit root_url
     click_on "Log in"
-    fill_in "Email", with: users(:normal_user).email
+    fill_in "Email", with: @user.email
     fill_in "Password", with: "password"
     click_on "Log in"
     assert_selector "h1", text: "You need to do this stuff:"
   end
 
-  # test "creating a Task" do
-  #   visit tasks_url
-  #   click_on "New Task"
+  test "Create a new task" do
+    visit root_url
 
-  #   fill_in "Name", with: @task.name
-  #   click_on "Create Task"
+    fill_in "Name", with: "A Test Task"
+    click_on "Create Task"
 
-  #   assert_text "Task was successfully created"
-  #   assert_text @task.name
-  # end
+    assert_selector 'td', text: "A Test Task"
+  end
+
+  test "Mark task complete and uncomplete" do
+    visit root_url
+    check "toggle_task_#{@task.id}"
+    within "tr#task_#{@task.id}" do
+      assert_selector "td.completed", count: 1
+    end
+    uncheck "toggle_task_#{@task.id}"
+    within "tr#task_#{@task.id}" do
+      assert_selector "td.completed", count: 0
+    end
+  end
 
   # test "updating a Task" do
   #   visit tasks_url

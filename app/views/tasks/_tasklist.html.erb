@@ -13,7 +13,6 @@
       <%= content_tag :tr, id: dom_id(task) do %>
         <td class="<%= class_names(completed: task.completed?) %>"><%= task.name %></td>
         <td><%= check_box_tag(dom_id(task, :toggle), nil, task.completed?, data: { reflex: "click->Example#toggle", id: task.id }) %></td>
-        <td><%= task.completed_at %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
