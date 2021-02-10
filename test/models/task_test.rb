@@ -46,4 +46,9 @@ class TaskTest < ActiveSupport::TestCase
     newest = Task.create(name: "Newest", user: @user)
     assert @user.tasks.first.name == "Newest"
   end
+
+  test "Time to complete" do
+    assert tasks(:completed_task).time_to_complete.round == 2
+    assert_nil tasks(:one).time_to_complete
+  end
 end

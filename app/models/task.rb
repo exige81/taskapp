@@ -19,6 +19,11 @@ class Task < ApplicationRecord
 
   default_scope { order(created_at: :desc)}
 
+  # Time in days from created to completed
+  def time_to_complete
+    completed ? ((Time.zone.now - completed_at) / 84600.0) : nil
+  end
+
   private
 
     def set_completed_at

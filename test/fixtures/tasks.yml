@@ -17,8 +17,8 @@ one:
   completed: false
   completed_at: nil
 
-complete_task:
+completed_task:
   name: A completed task
   user: normal_user
   completed: true
-  completed_at: 2021-01-08 11:14:28
+  completed_at: <%= 2.days.ago %>
