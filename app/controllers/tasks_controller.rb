@@ -6,7 +6,8 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     # @tasks = current_user.tasks if user_signed_in?
-    @tasks = current_user.tasks.order(created_at: :desc) if user_signed_in?
+    # @tasks = current_user.tasks.order(created_at: :desc, completed_at: :desc) if user_signed_in?
+    @tasks = current_user.tasks.order(created_at: :desc, completed: :desc) if user_signed_in?
     @task = Task.new if user_signed_in?
   end
 
