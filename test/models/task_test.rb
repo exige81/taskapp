@@ -41,10 +41,28 @@ class TaskTest < ActiveSupport::TestCase
     assert_nil task.completed_at
   end
 
-  test "Has default Scope" do
-    oldest = Task.create(name: "Oldest", user: @user)
-    newest = Task.create(name: "Newest", user: @user)
-    assert @user.tasks.first.name == "Newest"
+  test "Todo scope" do
+    second = @user.tasks.create( name: "Second")
+    tasks = @user.tasks.todo
+    assert tasks.first == second
+    assert tasks.last == tasks(:one)
+  end
+
+  test "Done scope" do
+    done = @user.tasks.create(name: "Finished", completed: true)
+    tasks = @user.tasks.done
+    assert tasks.first == done
+    assert tasks.last == tasks(:completed_task)
+  end
+
+  test "All tasks scope" do
+    second = @user.tasks.create( name: "Second")
+    done = @user.tasks.create(name: "Finished", completed: true)
+    tasks = @user.tasks.all_tasks
+    assert tasks.first == second
+    assert tasks[1] == tasks(:one)
+    assert tasks[2] == done
+    assert tasks.last == tasks(:completed_task)
   end
 
   test "Time to complete" do

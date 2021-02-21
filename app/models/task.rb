@@ -17,7 +17,10 @@ class Task < ApplicationRecord
 
   before_save :set_completed_at if :completed_changed?
 
-  default_scope { order(created_at: :desc)}
+  scope :todo, -> { where(completed: false).order(created_at: :desc)}
+  scope :done, -> { where(completed: true).order(completed_at: :desc)}
+  # scope :all_tasks, -> { todo + done }
+  scope :all_tasks, -> { order(:completed, completed_at: :desc, created_at: :desc)}
 
   # Time in days from created to completed
   def time_to_complete
