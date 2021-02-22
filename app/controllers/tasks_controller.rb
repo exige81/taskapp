@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :get_tasks, only: [:index]
 
   # GET /tasks
   # GET /tasks.json
@@ -8,7 +9,7 @@ class TasksController < ApplicationController
   # @tasks = current_user.tasks if user_signed_in?
     # @tasks = current_user.tasks.order(created_at: :desc) if user_signed_in?
     # @tasks = current_user.tasks.todo if user_signed_in?
-    @tasks = current_user.tasks.all_tasks if user_signed_in?
+    @tasks ||= current_user.tasks.todo if user_signed_in?
     @task = Task.new if user_signed_in?
   end
 
@@ -70,6 +71,16 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
+    end
+
+    # Gets task based on /:sort paramerter
+    def get_tasks
+      return unless params[:sort]
+      if params[:sort] == "all"
+        @tasks = current_user.tasks.all_tasks if user_signed_in?
+      elsif params[:sort] == "completed"
+        @tasks = current_user.tasks.done if user_signed_in? 
+      end
     end
 
     # Only allow a list of trusted parameters through.
