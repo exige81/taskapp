@@ -53,4 +53,10 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to root_url
   end
+
+  test "should accept sort param" do
+    get '/all'
+    assert_response :success
+  end
+
 end
