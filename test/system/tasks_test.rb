@@ -27,7 +27,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "Mark task complete and uncomplete" do
-    visit root_url
+    visit '/all'
     check "toggle_task_#{@task.id}"
     within "tr#task_#{@task.id}" do
       assert_selector "td.completed", count: 1
@@ -38,24 +38,36 @@ class TasksTest < ApplicationSystemTestCase
     end
   end
 
-  # test "updating a Task" do
-  #   visit tasks_url
-  #   click_on "Edit", match: :first
+  test "View sorted tasks" do
+    visit root_url
+    assert_selector "tr#task_#{@task.id}", count: 1
+    assert_selector "td.completed", count: 0
+    click_on "Completed"
+    assert_selector "td.completed", count: 1
+    assert_selector "tr#task_#{@task.id}", count: 0
+    click_on "All"
+    assert_selector "tr#task_#{@task.id}", count: 1
+    assert_selector "td.completed", count: 1
+  end
 
-  #   check "Completed" if @task.completed
-  #   # fill_in "Completed at", with: @task.completed_at
-  #   fill_in "Name", with: @task.name
-  #   click_on "Update Task"
+  test "updating a Task" do
+    visit tasks_url
+    click_on "Edit", match: :first
 
-  #   assert_text "Task was successfully updated"
-  # end
+    check "Completed" if @task.completed
+    # fill_in "Completed at", with: @task.completed_at
+    fill_in "Name", with: @task.name
+    click_on "Update Task"
 
-  # test "destroying a Task" do
-  #   visit tasks_url
-  #   page.accept_confirm do
-  #     click_on "Destroy", match: :first
-  #   end
+    assert_text "Task was successfully updated"
+  end
 
-  #   assert_text "Task was successfully destroyed"
-  # end
+  test "destroying a Task" do
+    visit tasks_url
+    page.accept_confirm do
+      click_on "Destroy", match: :first
+    end
+
+    assert_text "Task was successfully destroyed"
+  end
 end
