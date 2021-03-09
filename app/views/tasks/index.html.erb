@@ -5,10 +5,6 @@
 <% else %>
     <%= link_to "Log out", destroy_user_session_path, method: :delete %> <br>
     <%= render 'form', task: @task %>
-    <span>Sort by: 
-        <a href='/'>Incomplete</a> | 
-        <a href='/completed'>Completed</a> |
-        <a href='/all'>All</a> 
-    </span>
+    <%= render 'sort' %>
     <%= render 'tasklist' if @tasks.any? %>
 <% end %>

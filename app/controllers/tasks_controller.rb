@@ -72,11 +72,14 @@ class TasksController < ApplicationController
 
     # Gets task based on /:sort paramerter
     def get_tasks
+      @sort = "incomplete"
       return unless params[:sort]
       if params[:sort] == "all"
         @tasks = current_user.tasks.all_tasks if user_signed_in?
+        @sort = "all"
       elsif params[:sort] == "completed"
-        @tasks = current_user.tasks.done if user_signed_in? 
+        @tasks = current_user.tasks.done if user_signed_in?
+        @sort = "completed"
       end
     end
 
