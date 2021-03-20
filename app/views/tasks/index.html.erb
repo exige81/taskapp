@@ -1,10 +1,7 @@
-<h1 class="text-green-700">You need to do this stuff:</h1>
-<% if !user_signed_in? %>
-    <%= link_to "Log in", new_user_session_path %>
-    <%= link_to "Sign up", new_user_registration_path %>
-<% else %>
-    <%= link_to "Log out", destroy_user_session_path, method: :delete %> <br>
-    <%= render 'form', task: @task %>
-    <%= render 'sort' %>
-    <%= render 'tasklist' if @tasks.any? %>
-<% end %>
+<div class="">
+    <h1 class="text-gray-900 font-semibold text-5xl">You need to do this stuff:</h1>
+    <% if user_signed_in? %>
+        <%= render 'sort' %>
+        <%= render 'tasklist' if @tasks.any? %>
+    <% end %>
+</div>
