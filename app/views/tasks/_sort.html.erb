@@ -1,5 +1,5 @@
-<span>Sort by: 
-    <a href='/' class="<%= @sort == "incomplete" ? 'active' : '' %>">Incomplete</a> | 
-    <a href='/completed' class="<%= @sort == "completed" ? 'active' : '' %>">Completed</a> |
-    <a href='/all' class="<%= @sort == "all" ? 'active' : '' %>">All</a> 
-</span>
+<div class="my-4">Sort: 
+  <a href='/' class="<%= @sort == "incomplete" ? 'active' : '' %> sort-btn">Incomplete</a> |
+  <a href='/completed' class="<%= @sort == "completed" ? 'active' : '' %> sort-btn">Completed</a> |
+  <a href='/all' class="<%= @sort == "all" ? 'active' : '' %> sort-btn">All</a>
+</div>
