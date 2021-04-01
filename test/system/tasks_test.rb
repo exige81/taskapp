@@ -23,31 +23,31 @@ class TasksTest < ApplicationSystemTestCase
     fill_in "Name", with: "A Test Task"
     click_on "Add Task"
 
-    assert_selector 'td', text: "A Test Task"
+    assert_selector 'div', text: "A Test Task"
   end
 
   test "Mark task complete and uncomplete" do
     visit '/all'
     check "toggle_task_#{@task.id}"
-    within "tr#task_#{@task.id}" do
-      assert_selector "td.completed", count: 1
+    within "div#task_#{@task.id}" do
+      assert_selector "div.completed", count: 1
     end
     uncheck "toggle_task_#{@task.id}"
-    within "tr#task_#{@task.id}" do
-      assert_selector "td.completed", count: 0
+    within "div#task_#{@task.id}" do
+      assert_selector "div.completed", count: 0
     end
   end
 
   test "View sorted tasks" do
     visit root_url
-    assert_selector "tr#task_#{@task.id}", count: 1
-    assert_selector "td.completed", count: 0
+    assert_selector "div#task_#{@task.id}", count: 1
+    assert_selector "div.completed", count: 0
     click_on "Completed"
-    assert_selector "td.completed", count: 1
-    assert_selector "tr#task_#{@task.id}", count: 0
+    assert_selector "div.completed", count: 1
+    assert_selector "div#task_#{@task.id}", count: 0
     click_on "All"
-    assert_selector "tr#task_#{@task.id}", count: 1
-    assert_selector "td.completed", count: 1
+    assert_selector "div#task_#{@task.id}", count: 1
+    assert_selector "div.completed", count: 1
   end
 
   test "updating a Task" do

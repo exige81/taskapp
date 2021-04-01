@@ -1,22 +1,18 @@
-<table class="tasklist mt-4">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Completed</th>
-      <th>Age</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div id="tasklist" class="mt-8 table">
+  <div id="task-header" class="table-header-group font-bold text-center">
+    <span class="table-cell">Task</span>
+    <span class="table-cell">Completed</span>
+    <span class="table-cell">Age</span>
+  </div>
+  <div id="task-items" class="table-row-group">
     <% @tasks.each do |task| %>
-      <%= content_tag :tr, id: dom_id(task) do %>
-        <td class="<%= class_names(completed: task.completed?) %>"><%= task.name %></td>
-        <td><%= check_box_tag(dom_id(task, :toggle), nil, task.completed?, data: { reflex: "click->Example#toggle", id: task.id }) %></td>
-        <td><%= time_ago_in_words task.created_at %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <%= content_tag :div, id: dom_id(task), class: "table-row" do %>
+        <div class="<%= class_names(completed: task.completed?) %> table-cell"><%= task.name %></div>
+        <div class="table-cell"><%= check_box_tag(dom_id(task, :toggle), nil, task.completed?, data: { reflex: "click->Example#toggle", id: task.id }) %></div>
+        <div class="table-cell"><%= time_ago_in_words task.created_at %></div>
+        <div class="table-cell"><%= link_to 'Edit', edit_task_path(task) %></div>
+        <div class="table-cell"><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></div>
       <% end %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

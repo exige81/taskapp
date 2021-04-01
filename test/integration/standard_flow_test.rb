@@ -24,9 +24,9 @@ class StandardFlowTest < ActionDispatch::IntegrationTest
 
   test "Show tasks on user page" do
     get root_path
-    assert_select 'table.tasklist'
-    assert_select "tr[id=?]",  "task_#{tasks(:one).id}", count: 1
-    assert_select 'td.completed', count: 0
+    assert_select 'div#tasklist'
+    assert_select "div[id=?]",  "task_#{tasks(:one).id}", count: 1
+    assert_select 'div.completed', count: 0
     assert_select 'a[href=?]', edit_task_path( tasks(:one) ), count: 1
     assert_select 'a[href=?]', task_path( tasks(:one) ), text: "Destroy", count: 1
   end
@@ -39,14 +39,14 @@ class StandardFlowTest < ActionDispatch::IntegrationTest
 
   test "Completed page should only show completed tasks" do
     get '/completed'
-    assert_select "tr[id=?]",  "task_#{tasks(:completed_task).id}", count: 1
-    assert_select "tr[id=?]",  "task_#{tasks(:one).id}", count: 0
+    assert_select "div[id=?]",  "task_#{tasks(:completed_task).id}", count: 1
+    assert_select "div[id=?]",  "task_#{tasks(:one).id}", count: 0
   end
 
   test "All page should only show all tasks" do
     get '/all'
-    assert_select "tr[id=?]",  "task_#{tasks(:completed_task).id}", count: 1
-    assert_select "tr[id=?]",  "task_#{tasks(:one).id}", count: 1
+    assert_select "div[id=?]",  "task_#{tasks(:completed_task).id}", count: 1
+    assert_select "div[id=?]",  "task_#{tasks(:one).id}", count: 1
   end
 
 end
