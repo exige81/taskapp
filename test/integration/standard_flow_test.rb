@@ -34,15 +34,7 @@ class StandardFlowTest < ActionDispatch::IntegrationTest
   test "New task form on index page" do
     get root_path
     assert_select 'input#task_name', count: 1
-    assert_select 'input[value=?]', "Create Task", count: 1
-  end
-
-  test "No completed checkbox for new task form" do
-    get edit_task_path(tasks(:one))
-    assert_select 'input#task_completed', count: 1
-    get new_task_path
-    assert_response :success
-    assert_select 'input#task_completed', count: 0
+    assert_select 'input[value=?]', "Add Task", count: 1
   end
 
   test "Completed page should only show completed tasks" do

@@ -16,14 +16,8 @@
     <%= form.text_field :name, placeholder: "Task Name", class: "mt-0 bg-transparent placeholder-gray-900 block w-full px-0.5 border-0 border-b-2 border-gray-500 focus:ring-0 focus:border-black" %>
   </div>
 
-  <% if task.persisted? %>
-    <div class="field">
-      <%= form.label :completed %>
-      <%= form.check_box :completed %>
-    </div>
-  <% end %>
 
   <div class="inline-block ml-2">
-    <%= form.submit "Add task", class: "px-4 py-2 border-blue-900 border-2 font-semibold bg-blue-300 text-blue-700 rounded cursor-pointer hover:bg-blue-700 hover:text-blue-200" %>
+    <%= form.submit class: "px-4 py-2 border-blue-900 border-2 font-semibold bg-blue-300 text-blue-700 rounded cursor-pointer hover:bg-blue-700 hover:text-blue-200" %>
   </div>
 <% end %>

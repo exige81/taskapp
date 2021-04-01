@@ -10,10 +10,10 @@ class TasksTest < ApplicationSystemTestCase
   test "visit root url" do
     sign_out @user
     visit root_url
-    click_on "Log in"
+    click_link "Log in"
     fill_in "Email", with: @user.email
     fill_in "Password", with: "password"
-    click_on "Log in"
+    click_button "Log in"
     assert_selector "h1", text: "You need to do this stuff:"
   end
 
@@ -21,7 +21,7 @@ class TasksTest < ApplicationSystemTestCase
     visit root_url
 
     fill_in "Name", with: "A Test Task"
-    click_on "Create Task"
+    click_on "Add Task"
 
     assert_selector 'td', text: "A Test Task"
   end
