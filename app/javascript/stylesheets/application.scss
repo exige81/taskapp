@@ -15,4 +15,12 @@
   .completed {
     @apply line-through;
   }
+  .task-rows:nth-child(odd){
+    @apply  bg-white;
+    @apply bg-opacity-0;
+  }
+  .task-rows:nth-child(even){
+    @apply  bg-white;
+    @apply bg-opacity-50;
+  }
 }
