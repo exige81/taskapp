@@ -10,7 +10,8 @@ class TasksTest < ApplicationSystemTestCase
   test "visit root url" do
     sign_out @user
     visit root_url
-    click_link "Log in"
+    # click_link "Log in"
+    click_link "login_link"
     fill_in "Email", with: @user.email
     fill_in "Password", with: "password"
     click_button "Log in"
@@ -65,9 +66,13 @@ class TasksTest < ApplicationSystemTestCase
   test "destroying a Task" do
     visit tasks_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on "delete_task_#{@task.id}", match: :first
     end
 
     assert_text "Task was successfully destroyed"
+  end
+
+  test "editing a task" do
+    skip
   end
 end

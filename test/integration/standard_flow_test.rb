@@ -28,7 +28,7 @@ class StandardFlowTest < ActionDispatch::IntegrationTest
     assert_select "div[id=?]",  "task_#{tasks(:one).id}", count: 1
     assert_select 'div.completed', count: 0
     assert_select 'a[href=?]', edit_task_path( tasks(:one) ), count: 1
-    assert_select 'a[href=?]', task_path( tasks(:one) ), text: "Destroy", count: 1
+    assert_select 'a[href=?]', task_path( tasks(:one) ), method: :delete, count: 1
   end
 
   test "New task form on index page" do
