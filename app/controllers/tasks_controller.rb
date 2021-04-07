@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks ||= current_user.tasks.todo if user_signed_in?
+    @tasks ||= current_user.tasks.all_tasks if user_signed_in?
     @task = Task.new if user_signed_in?
   end
 
@@ -72,11 +72,12 @@ class TasksController < ApplicationController
 
     # Gets task based on /:sort paramerter
     def get_tasks
-      @sort = "incomplete"
+      # @sort = "incomplete"
+      @sort = "all"
       return unless params[:sort]
-      if params[:sort] == "all"
-        @tasks = current_user.tasks.all_tasks if user_signed_in?
-        @sort = "all"
+      if params[:sort] == "incomplete"
+        @tasks = current_user.tasks.todo if user_signed_in?
+        @sort = "incomplete"
       elsif params[:sort] == "completed"
         @tasks = current_user.tasks.done if user_signed_in?
         @sort = "completed"

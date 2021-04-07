@@ -26,7 +26,7 @@ class StandardFlowTest < ActionDispatch::IntegrationTest
     get root_path
     assert_select 'div#tasklist'
     assert_select "div[id=?]",  "task_#{tasks(:one).id}", count: 1
-    assert_select 'div.completed', count: 0
+    assert_select 'div.completed', count: 1
     assert_select 'a[href=?]', edit_task_path( tasks(:one) ), count: 1
     assert_select 'a[href=?]', task_path( tasks(:one) ), method: :delete, count: 1
   end

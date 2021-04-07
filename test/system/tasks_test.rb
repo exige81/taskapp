@@ -42,13 +42,13 @@ class TasksTest < ApplicationSystemTestCase
   test "View sorted tasks" do
     visit root_url
     assert_selector "div#task_#{@task.id}", count: 1
-    assert_selector "div.completed", count: 0
+    assert_selector "div.completed", count: 1
     click_on "Completed"
     assert_selector "div.completed", count: 1
     assert_selector "div#task_#{@task.id}", count: 0
-    click_on "All"
-    assert_selector "div#task_#{@task.id}", count: 1
-    assert_selector "div.completed", count: 1
+    click_on "Incomplete"
+    assert_selector "div#task_#{@task.id}", count: 0
+    assert_selector "div.completed", count: 0
   end
 
   test "updating a Task" do
