@@ -9,7 +9,7 @@
       <%= content_tag :div, id: dom_id(task), class: "table-row task-rows" do %>
         <div class="<%= class_names(completed: task.completed?) %> table-cell text-2xl font-light pl-2 align-middle"><%= task.name %></div>
         <div class="table-cell pl-2 align-middle">
-          <%= check_box_tag(dom_id(task, :toggle), nil, task.completed?, class: "form-checkbox h-6 w-6 rounded", data: { reflex: "click->Example#toggle", id: task.id }) %>
+          <%= check_box_tag(dom_id(task, :toggle), nil, task.completed?, class: "h-6 w-6 rounded", data: { reflex: "click->Example#toggle", id: task.id }) %>
         </div>
         <div class="table-cell pl-2 text-sm font-medium align-middle"><%= time_ago_in_words task.created_at %></div>
         <div class="table-cell px-4 py-1 align-middle"><%= link_to edit_task_path(task), id: dom_id(task, :edit) do %>
