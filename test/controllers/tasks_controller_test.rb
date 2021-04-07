@@ -59,4 +59,23 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "delete should redirect back when sort param used" do
+    delete task_url(@task), headers: { "HTTP_REFERER" => "http://www.example.com/completed" }
+    assert_redirected_to '/completed'
+  end
+
+  test "update should redirect back when sort param used" do
+    patch task_url(@task), 
+      params: { task: { name: @task.name } }, 
+      headers: { "HTTP_REFERER" => "http://www.example.com/completed" }
+    assert_redirected_to '/completed'
+  end
+
+  test "create should redirect back when sort param used" do
+    post tasks_url, 
+        params: { task: { name: @task.name } },
+        headers: { "HTTP_REFERER" => "http://www.example.com/completed" }
+    assert_redirected_to '/completed'
+  end
+
 end
