@@ -73,6 +73,12 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "editing a task" do
-    skip
+    visit tasks_url
+    click_on "edit_task_#{@task.id}"
+    fill_in "task_name",	with: "Edited Task"
+    click_on "Update Task"
+    within "div#task_#{@task.id}" do
+      assert_text "Edited Task"
+    end
   end
 end
