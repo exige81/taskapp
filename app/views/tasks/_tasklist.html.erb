@@ -1,18 +1,18 @@
 <div id="tasklist" class="mt-8 table">
-  <div id="task-header" class="table-header-group font-bold text-center">
+  <div id="task-header" class="table-header-group font-bold text-center text-sm md:text-base">
     <span class="table-cell">Task</span>
     <span class="table-cell">Completed</span>
     <span class="table-cell">Age</span>
   </div>
-  <div id="task-items" class="table-row-group ">
+  <div id="task-items" class="table-row-group">
     <% @tasks.each do |task| %>
       <%= content_tag :div, id: dom_id(task), class: "table-row task-rows" do %>
-        <div class="<%= class_names(completed: task.completed?) %> table-cell text-2xl font-light pl-2 align-middle"><%= task.name %></div>
+        <div class="<%= class_names(completed: task.completed?) %> table-cell text-lg md:text-2xl font-light pl-2 align-middle"><%= task.name %></div>
         <div class="table-cell pl-2 align-middle">
           <%= check_box_tag(dom_id(task, :toggle), nil, task.completed?, class: "h-6 w-6 rounded", data: { reflex: "click->Example#toggle", id: task.id }) %>
         </div>
-        <div class="table-cell pl-2 text-sm font-medium align-middle"><%= time_ago_in_words task.created_at %></div>
-        <div class="table-cell px-4 py-1 align-middle"><%= link_to edit_task_path(task), id: dom_id(task, :edit) do %>
+        <div class="table-cell pl-2 text-xs md:text-sm font-medium align-middle"><%= time_ago_in_words task.created_at %></div>
+        <div class="table-cell px-2 md:px-4 py-1 align-middle"><%= link_to edit_task_path(task), id: dom_id(task, :edit) do %>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <title>Edit</title>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
