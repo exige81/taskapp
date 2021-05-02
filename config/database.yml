@@ -23,8 +23,8 @@ default: &default
 
 development:
   <<: *default
-  host: 192.168.1.95
   port: 5432
+  host: <%= ENV['PG_HOST'] || 'localhost' %>
   username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASS'] %>
   database: taskapp_development
@@ -62,7 +62,7 @@ development:
 test:
   <<: *default
   database: taskapp_test
-  host: 192.168.1.95
+  host: <%= ENV['PG_HOST'] || 'localhost' %>
   port: 5432
   username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASS'] %>
