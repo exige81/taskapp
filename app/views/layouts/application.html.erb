@@ -13,13 +13,13 @@
 
   <body>
     <div class="bg-blue-400 min-h-screen flex flex-col">
-      <div class="bg-blue-200 md:w-1/2 h-12 md:mx-auto px-6 pb-10 flex items-center justify-end">
+      <div class="bg-blue-200 md:w-1/2 h-12 md:mx-auto px-6 flex items-center justify-end">
         <%= render 'shared/navbar' %>
       </div>
       
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <div class="bg-green-200 md:w-1/2 md:mx-auto px-4 md:px-12 flex-grow">
+      <div class="bg-green-200 md:w-1/2 md:mx-auto px-4 pb-10 md:px-12 flex-grow">
         <%= yield %>
       </div>
     </div>
