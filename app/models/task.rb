@@ -26,11 +26,20 @@ class Task < ApplicationRecord
   def time_to_complete
     completed ? ((Time.zone.now - completed_at) / 84600.0) : nil
   end
+  
+  def newly_complete?
+    completed? && completed_previously_changed? ? true : false
+  end
+
+  def newly_uncomplete?
+    !completed && completed_previously_changed? ? true : false
+  end
 
   private
 
     def set_completed_at
       self.completed_at = completed ? Time.zone.now : nil
     end
+
 
 end

@@ -69,4 +69,25 @@ class TaskTest < ActiveSupport::TestCase
     assert tasks(:completed_task).time_to_complete.round == 2
     assert_nil tasks(:one).time_to_complete
   end
+
+  test "Newly Complete" do
+    task = Task.new( name: 'Testing', user: @user)
+    task.completed = true
+    task.save
+    assert task.newly_complete?
+    task.reload
+    assert_not task.newly_complete?
+  end
+
+  test "Newly Uncomplete" do
+    task = Task.new( name: 'Testing', user: @user, completed: true)
+    task.save
+    assert_not task.newly_uncomplete?
+    task.completed = false
+    task.save
+    assert task.newly_uncomplete?
+    task.reload
+    assert_not task.newly_uncomplete?
+  end
+
 end
