@@ -72,8 +72,7 @@ class TaskTest < ActiveSupport::TestCase
 
   test "Newly Complete" do
     task = Task.new( name: 'Testing', user: @user)
-    task.completed = true
-    task.save
+    task.update(completed: true)
     assert task.newly_complete?
     task.reload
     assert_not task.newly_complete?
@@ -83,8 +82,7 @@ class TaskTest < ActiveSupport::TestCase
     task = Task.new( name: 'Testing', user: @user, completed: true)
     task.save
     assert_not task.newly_uncomplete?
-    task.completed = false
-    task.save
+    task.update(completed: false)
     assert task.newly_uncomplete?
     task.reload
     assert_not task.newly_uncomplete?
