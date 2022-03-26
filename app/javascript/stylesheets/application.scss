@@ -12,8 +12,17 @@
   .active {
     @apply bg-gray-700 text-gray-200; 
   }
-  .completed {
-    @apply line-through;
+  // .completed {
+  //   // @apply line-through;
+  // }
+  .completed::before {
+    content: ""; 
+    top: 55%;
+    @apply absolute inset-x-1 h-0.5 bg-gray-900;
+    border-top-left-radius: .0625rem;
+    border-bottom-left-radius: .0625rem;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
   }
   .task-rows:nth-child(odd){
     @apply  bg-white;
@@ -23,4 +32,44 @@
     @apply  bg-white;
     @apply bg-opacity-50;
   }
+}
+@keyframes strike {
+  from {right: 100%;}
+  to {right: .25rem;}
+}
+@keyframes erase {
+  from {right: .25rem; }
+  to {right: 100%}
+}
+.strikethru::before{
+  content: "";
+  @apply absolute h-0.5 bg-gray-900;
+  top: 55%;
+  left: .25rem;
+  border-top-left-radius: .0625rem;
+  border-bottom-left-radius: .0625rem;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  animation-name: strike;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+  // animation-iteration-count: infinite;
+  // animation-direction: alternate-reverse;
+}
+.remove-strikethru::before{
+  content: "";
+  @apply absolute h-0.5 bg-gray-900;
+  top: 55%;
+  left: .25rem;
+  border-top-left-radius: .0625rem;
+  border-bottom-left-radius: .0625rem;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  animation-name: erase;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+  // animation-iteration-count: infinite;
+  // animation-direction: alternate-reverse;
 }
