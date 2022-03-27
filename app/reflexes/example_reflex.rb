@@ -34,6 +34,10 @@ class ExampleReflex < ApplicationReflex
   delegate :current_user, to: :connection
 
   def toggle
+    morph :nothing
+  end
+  
+  def test
     task = Task.find(element.dataset[:id])
     task.update(completed: (task.completed? ? false : true ))
   end

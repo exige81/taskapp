@@ -19,7 +19,9 @@ export default class extends ApplicationController {
   connect () {
     super.connect()
     // add your code here, if applicable
+
   }
+
 
   /* Reflex specific lifecycle methods.
    *
@@ -50,6 +52,33 @@ export default class extends ApplicationController {
   // Assuming you create a "Example#dance" action in your Reflex class
   // you'll be able to use the following lifecycle methods:
 
+
+
+  beforeToggle (element, reflex, noop, reflexId) {
+    this.element.parentElement.previousElementSibling.addEventListener('animationend',(e) => {
+      this.stimulate('Example#test', element)
+    });
+
+    if (this.element.parentElement.previousElementSibling.classList.contains('completed')){
+      this.element.parentElement.previousElementSibling.classList.add('remove-strikethru')
+      this.element.parentElement.previousElementSibling.classList.remove('completed')
+    } else{
+      this.element.parentElement.previousElementSibling.classList.add('strikethru')
+    }
+
+    // function checkAnimation() {
+    //   // console.log("animation ended")
+    //   waitForAnimation = false
+    // }
+    // while (waitForAnimation === true){
+    //   console.log("waiting...")
+    // }
+  }
+
+  // afterToggle (element, reflex, noop, reflexId){
+  //   console.log(element.parentElement.previousElementSibling);
+  //   // let desctext = element.parentElement.previousElementSibling;
+  // }
   // beforeDance(element, reflex, noop, reflexId) {
   //  element.innerText = 'Putting dance shoes on...'
   // }
@@ -67,7 +96,7 @@ export default class extends ApplicationController {
   //   element.innerText = '\nWhatever that was, it\'s over now.'
   // }
 
-  // finalizeDance(element, reflex, noop, reflexId) {
-  //   element.innerText = '\nNow, the cleanup can begin!'
+  // finalizeToggle(element, reflex, noop, reflexId) {
+  //   // element.innerText = '\nNow, the cleanup can begin!'
   // }
 }
