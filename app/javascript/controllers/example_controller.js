@@ -1,3 +1,4 @@
+import { elementToXPath } from 'stimulus_reflex/javascript/utils'
 import ApplicationController from './application_controller'
 
 /* This is the custom StimulusReflex controller for the Example Reflex.
@@ -53,35 +54,37 @@ export default class extends ApplicationController {
   // you'll be able to use the following lifecycle methods:
 
 
-
+  
   beforeToggle (element, reflex, noop, reflexId) {
-    this.element.parentElement.previousElementSibling.addEventListener('animationend',(e) => {
-      this.stimulate('Example#test', element)
-    });
 
-    if (this.element.parentElement.previousElementSibling.classList.contains('completed')){
-      this.element.parentElement.previousElementSibling.classList.add('remove-strikethru')
-      this.element.parentElement.previousElementSibling.classList.remove('completed')
-    } else{
-      this.element.parentElement.previousElementSibling.classList.add('strikethru')
+    // Set up references for later use
+    this.taskText = this.element.parentElement.previousElementSibling
+    const stimObj = this
+
+    // Add the appropriate animation
+    if (this.taskText.classList.contains('completed')){
+      this.taskText.classList.add('remove-strikethru')
+      this.taskText.classList.remove('completed')
+    } else {
+      this.taskText.classList.add('strikethru')
     }
+    
+    // Fire off database change when animation ended
+    this.updateTask = function(){
+      stimObj.stimulate('example#test')
+    }
+    this.taskText.addEventListener("animationend", this.updateTask)
 
-    // function checkAnimation() {
-    //   // console.log("animation ended")
-    //   waitForAnimation = false
-    // }
-    // while (waitForAnimation === true){
-    //   console.log("waiting...")
-    // }
+
   }
 
   // afterToggle (element, reflex, noop, reflexId){
-  //   console.log(element.parentElement.previousElementSibling);
-  //   // let desctext = element.parentElement.previousElementSibling;
   // }
+
   // beforeDance(element, reflex, noop, reflexId) {
   //  element.innerText = 'Putting dance shoes on...'
   // }
+
 
   // danceSuccess(element, reflex, noop, reflexId) {
   //   element.innerText = '\nDanced like no one was watching! Was someone watching?'
@@ -97,6 +100,10 @@ export default class extends ApplicationController {
   // }
 
   // finalizeToggle(element, reflex, noop, reflexId) {
-  //   // element.innerText = '\nNow, the cleanup can begin!'
+  //   taskText.removeEventListener("animationend", update)
   // }
+  finalizeTest(element, reflex, noop, reflexId) {
+    // Remove event listener to avoid duplicates
+    this.taskText.removeEventListener("animationend", this.updateTask)
+  }
 }
