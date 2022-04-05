@@ -6,7 +6,9 @@ services:
   - postgresql
   - redis-server
 before_install:
-  - nvm install --lts
+  # - nvm install --lts
+  nvm install 14.19.1 #Set Node version to be compatible with node-sass
+  nvm use 14.19.1
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
