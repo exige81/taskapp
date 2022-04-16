@@ -26,8 +26,8 @@
     @apply bg-opacity-0;
   }
   .task-rows:nth-child(even){
-    @apply  bg-white;
-    @apply bg-opacity-50;
+    // @apply  bg-white;
+    // @apply bg-opacity-50;
   }
   .wrapper{
     @apply bg-grid;
@@ -42,7 +42,11 @@ header {
   border-bottom: 3px solid #066d58;
 }
 main{
+  @apply mx-2;
+}
+main > h1, #tasklist, input#task_name{
   font-family: 'Architects Daughter', cursive;
+  @apply tracking-wide;
 }
 .navwrapper{
   height: 100%;
@@ -74,10 +78,13 @@ footer{
 }
 @media (min-width: 768px){
   main{
-      width: 50%;
-      margin-inline: auto;
+    width: 50%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
+  
   .navwrapper::before{
     content: "";
     grid-row: 1;
@@ -91,10 +98,10 @@ footer{
     border-right: 3px solid #066d58;
   }
   .wrapper,.navwrapper{
-      margin-inline: 5vw;
-      border-inline: 3px solid #066d58;
+    margin-inline: 5vw;
+    border-inline: 3px solid #066d58;
   }
-
+  
 }
 
 @keyframes strike {

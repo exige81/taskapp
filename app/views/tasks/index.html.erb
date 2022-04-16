@@ -1,8 +1,10 @@
 <main>
-    <h1 class="text-gray-900 font-semibold text-3xl md:text-5xl mt-10 text-center">You need to do this stuff:</h1>
-    <% if user_signed_in? %>
-        <%= render 'sort' %>
-        <%= render 'form', task: @task %>
-        <%= render 'tasklist' if @tasks.any? %>
-    <% end %>
+    <h1 class="text-gray-900 font-semibold text-3xl md:text-5xl mt-6 text-center">You need to do this stuff:</h1>
+    <div id="task-container">
+        <% if user_signed_in? %>
+            <%= render 'sort' %>
+            <%= render 'form', task: @task %>
+            <%= render 'tasklist' if @tasks.any? %>
+        <% end %>
+    </div>
 </main>
