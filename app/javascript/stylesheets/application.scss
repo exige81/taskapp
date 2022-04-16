@@ -12,9 +12,6 @@
   .active {
     @apply bg-gray-700 text-gray-200; 
   }
-  // .completed {
-  //   // @apply line-through;
-  // }
   .completed::before {
     content: ""; 
     top: 55%;
@@ -32,7 +29,74 @@
     @apply  bg-white;
     @apply bg-opacity-50;
   }
+  .wrapper{
+    @apply bg-grid;
+  }
 }
+body{
+  background-color: #eaefdb;
+  position: relative;
+}
+header {
+  height: 5vh;
+  border-bottom: 3px solid #066d58;
+}
+main{
+  font-family: 'Architects Daughter', cursive;
+}
+.navwrapper{
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.navitem{
+  height: 100%;
+  grid-column: 3;
+}
+.wrapper{
+  min-height: calc(100vh - 5vh);
+  background-size: 6.68%;
+  background-repeat: repeat;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+footer{
+  height: 3rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+.footer {
+  width: 50%;
+  height: 100%;
+  margin-inline: auto;
+}
+@media (min-width: 768px){
+  main{
+      width: 50%;
+      margin-inline: auto;
+  }
+
+  .navwrapper::before{
+    content: "";
+    grid-row: 1;
+    grid-column: 1;
+    border-right: 3px solid #066d58;
+  }
+  .navwrapper::after{
+    content: "";
+    grid-row: 1;
+    grid-column: 2;
+    border-right: 3px solid #066d58;
+  }
+  .wrapper,.navwrapper{
+      margin-inline: 5vw;
+      border-inline: 3px solid #066d58;
+  }
+
+}
+
 @keyframes strike {
   from {right: 100%;}
   to {right: .25rem;}
@@ -54,8 +118,6 @@
   animation-duration: 50ms;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in;
-  // animation-iteration-count: infinite;
-  // animation-direction: alternate-reverse;
 }
 .remove-strikethru::before{
   content: "";
@@ -70,6 +132,4 @@
   animation-duration: 50ms;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in;
-  // animation-iteration-count: infinite;
-  // animation-direction: alternate-reverse;
 }
