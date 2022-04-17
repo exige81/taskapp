@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'grid': "url('/assets/grid.svg')"
+        'grid': "url('grid.svg')"
       }
     },
   },
