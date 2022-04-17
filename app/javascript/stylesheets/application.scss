@@ -21,14 +21,6 @@
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
   }
-  .task-rows:nth-child(odd){
-    @apply  bg-white;
-    @apply bg-opacity-0;
-  }
-  .task-rows:nth-child(even){
-    // @apply  bg-white;
-    // @apply bg-opacity-50;
-  }
   .wrapper{
     @apply bg-grid;
   }
