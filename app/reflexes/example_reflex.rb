@@ -34,15 +34,14 @@ class ExampleReflex < ApplicationReflex
   delegate :current_user, to: :connection
 
   def toggle
-    # morph :nothing
     task = Task.find(element.dataset[:id])
     task.update(completed: (task.completed? ? false : true ))
     morph dom_id(task), render(partial: "taskrow", locals: {task: task})
   end
   
-  def test
-    task = Task.find(element.dataset[:id])
-    task.update(completed: (task.completed? ? false : true ))
+  def refresh
+    # Refresh page in order to update tasklist sorting order
+    morph :page
   end
 
 end
