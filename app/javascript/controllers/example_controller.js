@@ -57,23 +57,23 @@ export default class extends ApplicationController {
   
   beforeToggle (element, reflex, noop, reflexId) {
 
-    // Set up references for later use
-    this.taskText = this.element.parentElement.previousElementSibling
-    const stimObj = this
+    // // Set up references for later use
+    // this.taskText = this.element.parentElement.previousElementSibling
+    // const stimObj = this
 
-    // Add the appropriate animation
-    if (this.taskText.classList.contains('completed')){
-      this.taskText.classList.add('remove-strikethru')
-      this.taskText.classList.remove('completed')
-    } else {
-      this.taskText.classList.add('strikethru')
-    }
+    // // Add the appropriate animation
+    // if (this.taskText.classList.contains('completed')){
+    //   this.taskText.classList.add('remove-strikethru')
+    //   this.taskText.classList.remove('completed')
+    // } else {
+    //   this.taskText.classList.add('strikethru')
+    // }
     
-    // Fire off database change when animation ended
-    this.updateTask = function(){
-      stimObj.stimulate('example#test')
-    }
-    this.taskText.addEventListener("animationend", this.updateTask)
+    // // Fire off database change when animation ended
+    // this.updateTask = function(){
+    //   stimObj.stimulate('example#test')
+    // }
+    // this.taskText.addEventListener("animationend", this.updateTask)
 
 
   }
@@ -103,7 +103,7 @@ export default class extends ApplicationController {
   //   taskText.removeEventListener("animationend", update)
   // }
   finalizeTest(element, reflex, noop, reflexId) {
-    // Remove event listener to avoid duplicates
-    this.taskText.removeEventListener("animationend", this.updateTask)
+    // // Remove event listener to avoid duplicates
+    // this.taskText.removeEventListener("animationend", this.updateTask)
   }
 }
