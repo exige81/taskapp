@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bootsnap',  require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,7 +45,8 @@ group :development do
   # gem 'annotate', '~> 3.2'
   gem 'prettier'
   gem 'solargraph'
-  gem 'rubocop'
+  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  gem "rubocop-rails-omakase", require: false
 end
 
 group :test do
