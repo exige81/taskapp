@@ -404,7 +404,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0)
   solargraph
-  stimulus_reflex (~> 3.4)
+  stimulus_reflex (= 3.4.1)
   turbolinks (~> 5)
   tzinfo-data
   web-console
