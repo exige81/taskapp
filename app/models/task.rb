@@ -15,7 +15,9 @@ class Task < ApplicationRecord
 
   validates :name, presence: true
 
-  before_save :set_completed_at if :completed_changed?
+  # Set completed_at when the completed flag changes.
+  # Use the `if:` option so the callback only runs when `completed` actually changes.
+  before_save :set_completed_at, if: :completed_changed?
 
   scope :todo, -> { where(completed: false).order(created_at: :desc)}
   scope :done, -> { where(completed: true).order(completed_at: :desc)}
@@ -24,7 +26,8 @@ class Task < ApplicationRecord
 
   # Time in days from created to completed
   def time_to_complete
-    completed ? ((Time.zone.now - completed_at) / 84600.0) : nil
+    # Time in days from created to completed. Use 86400 seconds per day.
+    completed && completed_at ? ((Time.zone.now - completed_at) / 86_400.0) : nil
   end
   
   def newly_complete?
