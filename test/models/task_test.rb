@@ -71,6 +71,23 @@ class TaskTest < ActiveSupport::TestCase
     assert_nil tasks(:one).time_to_complete
   end
 
+  test "completed_at is unchanged when updating unrelated attributes" do
+    task = tasks(:completed_task)
+    original_ts = task.completed_at.to_i
+
+    task.update(name: "Updated name only")
+    task.reload
+
+    assert_equal original_ts, task.completed_at.to_i, "completed_at should not change when saving unrelated attributes"
+  end
+
+  test "time_to_complete uses 86400 seconds per day (regression)" do
+    task = tasks(:completed_task)
+    # completed_task fixture uses 2.days.ago
+    days = task.time_to_complete
+    # A strict tolerance ensures the 84600/86400 typo will fail this test
+    assert_in_delta 2.0, days.abs, 0.01, "time_to_complete must compute days using 86400 seconds/day"
+  end
   test "Newly Complete" do
     task = Task.new( name: 'Testing', user: @user)
     task.update(completed: true)
