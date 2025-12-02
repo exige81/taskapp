@@ -6,7 +6,7 @@ ruby '~> 3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.2'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
+gem 'pg', '~> 1.3'
 # Use Puma as the app server
 gem 'puma', '~> 6.0'
 # Use SCSS for stylesheets
@@ -44,7 +44,7 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console'
 
-  gem 'annotate', '~> 3.1', '>= 3.1.1'
+  gem 'annotate', '~> 3.2'
   gem 'prettier'
   gem 'solargraph'
 end
