@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 3.1'
+ruby '~> 3.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.2'
+gem 'rails', '~> 8.0.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.3'
 # Use Puma as the app server
@@ -44,7 +44,7 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console'
 
-  gem 'annotate', '~> 3.2'
+  # gem 'annotate', '~> 3.2'
   gem 'prettier'
   gem 'solargraph'
 end
@@ -63,5 +63,7 @@ end
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 gem "stimulus_reflex", "3.4.1"
+# For using OpenStruct in Rails 8 with StimulusReflex
+gem "ostruct"
 
 gem "hiredis", "~> 0.6.3"
