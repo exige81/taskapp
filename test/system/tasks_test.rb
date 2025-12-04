@@ -39,6 +39,33 @@ class TasksTest < ApplicationSystemTestCase
     end
   end
 
+  test "completed task sorts bottom" do
+    visit '/all'
+    # Make sure the task exists
+    assert_selector "div#task_#{@task.id}", count: 1
+
+    # Mark the task complete
+    check "toggle_task_#{@task.id}"
+
+    # After the reflex runs, the tasklist should be re-rendered and the completed
+    rows = page.all('#task-items > .table-row', wait: 5)
+
+    # Find the position of the task we just completed
+    idx = rows.find_index { |r| r[:id] == "task_#{@task.id}" }
+    assert_not_nil idx, "completed task should be present in the task list"
+    assert rows[idx].has_css?('div.completed'), "expected the task row to show completed"
+
+    # All rows before this index should be incomplete (no child 'div.completed')
+    before = rows[0...idx] || []
+    assert before.all? { |r| !r.has_css?('div.completed') },
+      "expected all rows before the completed task to be incomplete"
+
+    # Rows after this index should be completed (they belong to the completed section)
+    after = rows[(idx + 1)..-1] || []
+    assert after.all? { |r| r.has_css?('div.completed') },
+      "expected all rows after the completed task to be completed"
+  end
+
   test "View sorted tasks" do
     visit root_url
     assert_selector "div#task_#{@task.id}", count: 1
