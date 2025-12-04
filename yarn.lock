@@ -835,6 +835,11 @@
   dependencies:
     purgecss "^3.1.3"
 
+"@hotwired/stimulus@^3":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.2.2.tgz#071aab59c600fed95b97939e605ff261a4251608"
+  integrity sha512-eGeIqNOQpXoPAIP7tC1+1Yc1yl1xnwYqg+3mzqxyrbE5pg5YFBZcA6YoTiByJB6DKAEsiWtl6tjTJS4IYtbB7A==
+
 "@npmcli/move-file@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@npmcli/move-file/-/move-file-1.0.1.tgz#de103070dac0f48ce49cf6693c23af59c0f70464"
@@ -842,10 +847,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@rails/actioncable@>= 6.0":
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.1.1.tgz#e980b2ea1c62cae17bcddad37deb6ba88d498b63"
-  integrity sha512-A8toxvSuzK/wX9uMwyV6T1EYzlqzIJNrO8XiNCSNsmKresdX2cbAjxFdMu9haaPJPjl3aC2FKRJeVCUWVtLPAQ==
+"@rails/actioncable@^6 || ^7 || ^8":
+  version "8.1.100"
+  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-8.1.100.tgz#b1f85f3482425fb91e5eba1deb55152ee0bb2f85"
+  integrity sha512-j4vJQqz51CDVYv2UafKRu4jiZi5/gTnm7NkyL+VMIgEw3s8jtVtmzu9uItUaZccUg9NJ6o05yVyBAHxNfTuCRA==
 
 "@rails/actioncable@^6.0.0":
   version "6.1.0"
@@ -1737,12 +1742,12 @@ bytes@3.1.0, bytes@^3.0.0:
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.0.tgz#f6cf7933a360e0588fa9fde85651cdc7f805d1f6"
   integrity sha512-zauLjrfCG+xvoyaqLoV8bLVXXNGC4JqlxFCutSDWA6fJrTo2ZuvLYTqZ7aHBLZSMOopbzwv8f+wZcVzfVTI2Dg==
 
-"cable_ready@>= 4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-4.5.0.tgz#1207218dd16934d12addfbd34c26ead853570672"
-  integrity sha512-9bom1DuYe1teBdRckgKWjg+rWRLWrkOvkhzlXkhb33X+Pfu/QK9e4vGk6hGK9PVKVr0SYZC41dByFGknW4spLg==
+cable_ready@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-5.0.6.tgz#d76f7500d73606175645a84aa743b22667c0109a"
+  integrity sha512-SRCLljXFeFVRDeE/f/LutWNo50pkZRPxkKtFhqVMYvCOZhnUTWH3pPjsn8bD9KlRAMUrlrBN6reX8xX7ItvqfA==
   dependencies:
-    morphdom "^2.6.1"
+    morphdom "2.6.1"
 
 cacache@^12.0.2:
   version "12.0.4"
@@ -4729,7 +4734,7 @@ modern-normalize@^1.0.0:
   resolved "https://registry.yarnpkg.com/modern-normalize/-/modern-normalize-1.0.0.tgz#539d84a1e141338b01b346f3e27396d0ed17601e"
   integrity sha512-1lM+BMLGuDfsdwf3rsgBSrxJwAZHFIrQ8YR61xIqdHo0uNKI9M52wNpHSrliZATJp51On6JD0AfRxd4YGSU0lw==
 
-morphdom@^2.6.1:
+morphdom@2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.6.1.tgz#e868e24f989fa3183004b159aed643e628b4306e"
   integrity sha512-Y8YRbAEP3eKykroIBWrjcfMw7mmwJfjhqdpSvoqinu8Y702nAwikpXcNFDiIkyvfCLxLM9Wu95RZqo4a9jFBaA==
@@ -7067,13 +7072,14 @@ stimulus@^2.0.0:
     "@stimulus/core" "^2.0.0"
     "@stimulus/webpack-helpers" "^2.0.0"
 
-stimulus_reflex@3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/stimulus_reflex/-/stimulus_reflex-3.4.1.tgz#2606aee3b2911b5939d68f65a75262fe3c626204"
-  integrity sha512-YbFcuE4HndNe9RBQvF/Vu+7GDt0zLGdhQTXuGfLDVti1qggPG3kPgV1YBZ9volzBTGUmLp2PQbxG9j5AIyYp5A==
+stimulus_reflex@3.5.5:
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/stimulus_reflex/-/stimulus_reflex-3.5.5.tgz#f2475fa7eb1f36dcf510cfffdfbd0eaa4c49463a"
+  integrity sha512-8jMyNnbepY4oZAbGZNowmhdg0mNe6p9qMNV8UGW64oSiEMNkV0paGL7VHwm6k/oUGIgVB6ZT+SvzrP20bYBzfw==
   dependencies:
-    "@rails/actioncable" ">= 6.0"
-    cable_ready ">= 4.5.0"
+    "@hotwired/stimulus" "^3"
+    "@rails/actioncable" "^6 || ^7 || ^8"
+    cable_ready "^5.0.6"
 
 stream-browserify@^2.0.1:
   version "2.0.2"
