@@ -1,15 +1,29 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
+ * Application Stylesheet Manifest
+ * Vanilla CSS - Migrated from Tailwind CSS
  */
+
+/* Base Styles */
+@import 'base/variables.css';
+@import 'base/typography.css';
+
+/* Layout */
+@import 'layout/header.css';
+@import 'layout/main.css';
+@import 'layout/wrapper.css';
+@import 'layout/footer.css';
+
+/* Components */
+@import 'components/buttons.css';
+@import 'components/forms.css';
+@import 'components/tasks.css';
+@import 'components/links.css';
+
+/* Utilities */
+@import 'utilities/spacing.css';
+@import 'utilities/typography.css';
+@import 'utilities/colors.css';
+@import 'utilities/misc.css';
+
+/* Animations */
+@import 'animations/strike.css';

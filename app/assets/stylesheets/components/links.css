@@ -1,0 +1,15 @@
+/* Link Components */
+
+.inline-icon {
+  height: var(--spacing-6);
+  width: var(--spacing-6);
+  display: inline-block;
+}
+
+.inline-icon:hover {
+  color: var(--color-gray-600);
+}
+
+.nav-link:hover {
+  color: var(--color-gray-600);
+}

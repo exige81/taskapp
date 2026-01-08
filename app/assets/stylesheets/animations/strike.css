@@ -1,0 +1,45 @@
+/* Strikethrough Animations */
+
+@keyframes strike {
+  from { right: 100%; }
+  to { right: 0.25rem; }
+}
+
+@keyframes erase {
+  from { right: 0.25rem; }
+  to { right: 100%; }
+}
+
+.strikethru::before {
+  content: "";
+  position: absolute;
+  height: var(--size-0-5);
+  background-color: var(--color-gray-900);
+  top: 55%;
+  left: 0.25rem;
+  border-top-left-radius: 0.0625rem;
+  border-bottom-left-radius: 0.0625rem;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  animation-name: strike;
+  animation-duration: 50ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+.remove-strikethru::before {
+  content: "";
+  position: absolute;
+  height: var(--size-0-5);
+  background-color: var(--color-gray-900);
+  top: 55%;
+  left: 0.25rem;
+  border-top-left-radius: 0.0625rem;
+  border-bottom-left-radius: 0.0625rem;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  animation-name: erase;
+  animation-duration: 50ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}

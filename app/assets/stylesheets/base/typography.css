@@ -1,0 +1,8 @@
+/* Base Typography */
+
+main > h1,
+#tasklist,
+input#task_name {
+  font-family: 'Architects Daughter', cursive;
+  letter-spacing: var(--tracking-wide);
+}
