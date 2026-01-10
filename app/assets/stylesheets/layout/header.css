@@ -14,6 +14,11 @@ header {
 .navitem {
   height: 100%;
   grid-column: 3;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  display: flex;
+  align-items: center;
 }
 
 @media (min-width: 768px) {

@@ -6,3 +6,7 @@ input#task_name {
   font-family: 'Architects Daughter', cursive;
   letter-spacing: var(--tracking-wide);
 }
+
+main > h1 {
+  line-height: 1;
+}

@@ -10,6 +10,7 @@
   font-weight: var(--font-light);
   padding-left: var(--spacing-2);
   position: relative;
+  vertical-align: middle;
 }
 
 @media (min-width: 768px) {

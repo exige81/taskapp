@@ -12,6 +12,7 @@
   --color-gray-500: #6b7280;
   --color-gray-300: #d1d5db;
   --color-gray-200: #e5e7eb;
+  --color-gray-100: rgb(240, 240, 240);
 
   /* Tailwind Blue Scale */
   --color-blue-900: #1e3a8a;
