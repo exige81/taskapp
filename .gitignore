@@ -43,3 +43,5 @@ Guardfile
 
 # Ignore Keys
 *.key
+
+.claude

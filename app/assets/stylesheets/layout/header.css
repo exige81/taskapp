@@ -1,0 +1,43 @@
+/* Header and Navigation */
+
+header {
+  height: 5vh;
+  border-bottom: 3px solid var(--color-primary);
+}
+
+.navwrapper {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.navitem {
+  height: 100%;
+  grid-column: 3;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .navwrapper {
+    margin-inline: 5vw;
+    border-inline: 3px solid var(--color-primary);
+  }
+
+  .navwrapper::before {
+    content: "";
+    grid-row: 1;
+    grid-column: 1;
+    border-right: 3px solid var(--color-primary);
+  }
+
+  .navwrapper::after {
+    content: "";
+    grid-row: 1;
+    grid-column: 2;
+    border-right: 3px solid var(--color-primary);
+  }
+}

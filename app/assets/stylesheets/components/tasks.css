@@ -1,0 +1,49 @@
+/* Task Components */
+
+#tasklist {
+  margin-top: var(--spacing-8);
+  display: table;
+}
+
+.task-name {
+  font-size: var(--text-lg);
+  font-weight: var(--font-light);
+  padding-left: var(--spacing-2);
+  position: relative;
+  vertical-align: middle;
+}
+
+@media (min-width: 768px) {
+  .task-name {
+    font-size: var(--text-2xl);
+  }
+}
+
+.task-age {
+  font-size: var(--text-xs);
+  padding-left: var(--spacing-2);
+  padding-right: var(--spacing-2);
+  padding-top: var(--spacing-1);
+  padding-bottom: var(--spacing-1);
+  vertical-align: middle;
+}
+
+@media (min-width: 768px) {
+  .task-age {
+    font-size: var(--text-sm);
+  }
+}
+
+.completed::before {
+  content: "";
+  position: absolute;
+  top: 55%;
+  left: 0.25rem;    /* inset-x-1 effect */
+  right: 0.25rem;
+  height: var(--size-0-5);
+  background-color: var(--color-gray-900);
+  border-top-left-radius: 0.0625rem;
+  border-bottom-left-radius: 0.0625rem;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}

@@ -1,0 +1,43 @@
+/* Link Components */
+
+.inline-icon {
+  height: var(--spacing-6);
+  width: var(--spacing-6);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Links containing icons (edit/delete buttons) */
+a:has(.inline-icon) {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:has(.inline-icon):hover {
+  color: var(--color-gray-600);
+}
+
+.nav-link:hover {
+  color: var(--color-gray-600);
+}
+
+/* Navbar links - remove default link styling */
+.navitem a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.navitem a:hover {
+  color: var(--color-gray-600);
+}
+
+/* Devise/form links */
+.devise-links a,
+.text a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hover\:underline:hover {
+  text-decoration: underline;
+}
