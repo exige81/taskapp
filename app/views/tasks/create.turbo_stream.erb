@@ -1,0 +1,6 @@
+<%= turbo_stream.prepend "task-items" do %>
+  <%= render partial: "taskrow", locals: { task: @task } %>
+<% end %>
+<%= turbo_stream.replace "new_task" do %>
+  <%= render partial: "form", locals: { task: Task.new } %>
+<% end %>
