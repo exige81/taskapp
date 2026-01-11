@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :tasks
+  resources :tasks do
+    member do
+      post :toggle
+    end
+  end
   devise_for :users
   get '(/:sort)', to: 'tasks#index'
   root 'tasks#index'

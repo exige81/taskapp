@@ -1,7 +1,9 @@
-<%= content_tag :div, id: dom_id(task), class: "table-row task-rows" do %>
-    <div class="<%= task_state_class(task) %> table-cell task-name"><%= task.name %></div>
+<%= content_tag :div, id: dom_id(task), class: "table-row task-rows", data: { controller: "task" } do %>
+    <div class="<%= task_state_class(task) %> table-cell task-name" data-task-target="taskName"><%= task.name %></div>
     <div class="table-cell pl-2 align-middle">
-        <%= check_box_tag(dom_id(task, :toggle), nil, task.completed?, class: "h-6 w-6 rounded", data: { reflex: "click->Example#toggle", controller: "example", id: task.id }) %>
+        <%= form_with url: toggle_task_path(task), method: :post do |f| %>
+          <%= check_box_tag :completed, nil, task.completed?, id: dom_id(task, :toggle), class: "h-6 w-6 rounded", onchange: "this.form.requestSubmit()" %>
+        <% end %>
     </div>
     <div class="table-cell task-age font-medium"><%= time_ago_in_words task.created_at %></div>
     <div class="table-cell px-2 md:px-4 py-1 align-middle"><%= link_to edit_task_path(task), id: dom_id(task, :edit) do %>
@@ -12,7 +14,7 @@
         <% end %>
     </div>
     <div class="table-cell pl-2 py-1 align-middle">
-        <%= link_to task, id: dom_id(task, :delete), method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <%= link_to task, id: dom_id(task, :delete), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
         <svg xmlns="http://www.w3.org/2000/svg" class="inline-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <title>Delete</title>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

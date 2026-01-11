@@ -4,9 +4,7 @@ development:
   channel_prefix: taskapp_development
 
 test:
-  adapter: redis
-  url: <%= Rails.application.credentials.redis_url %>
-  channel_prefix: taskapp_test
+  adapter: async
 
 production:
   adapter: redis
