@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle]
   before_action :get_tasks, only: [:index]
 
   # GET /tasks
@@ -31,6 +31,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        format.turbo_stream
         format.html { redirect_back fallback_location: root_url, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
@@ -59,8 +60,18 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_back fallback_location: root_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # POST /tasks/1/toggle
+  def toggle
+    @task.update(completed: !@task.completed?)
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to root_url }
     end
   end
 

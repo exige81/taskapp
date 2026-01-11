@@ -54,6 +54,14 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  test "should toggle task" do
+    original_state = @task.completed?
+    post toggle_task_url(@task), as: :turbo_stream
+    assert_response :success
+    @task.reload
+    assert_not_equal original_state, @task.completed?
+  end
+
   test "should accept sort param" do
     get '/all'
     assert_response :success

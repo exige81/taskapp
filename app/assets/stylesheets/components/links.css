@@ -17,6 +17,19 @@ a:has(.inline-icon):hover {
   color: var(--color-gray-600);
 }
 
+/* Buttons containing icons (styled like links) */
+button:has(.inline-icon) {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+button:has(.inline-icon):hover {
+  color: var(--color-gray-600);
+}
+
 .nav-link:hover {
   color: var(--color-gray-600);
 }
