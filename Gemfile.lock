@@ -150,6 +150,10 @@ GEM
       tilt
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    importmap-rails (2.2.3)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.8.2)
     irb (1.16.0)
       pp (>= 0.6.0)
@@ -244,6 +248,10 @@ GEM
     prettier_print (1.2.1)
     prettyprint (0.2.0)
     prism (1.6.0)
+    propshaft (1.3.1)
+      actionpack (>= 7.0.0)
+      activesupport (>= 7.0.0)
+      rack
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -255,8 +263,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.4)
-    rack-proxy (0.7.7)
-      rack
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -344,16 +350,6 @@ GEM
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
     rubyzip (3.2.2)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     securerandom (0.4.1)
     selenium-webdriver (4.38.0)
       base64 (~> 0.2)
@@ -361,7 +357,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    semantic_range (3.1.0)
     shellany (0.0.1)
     solargraph (0.57.0)
       backport (~> 1.2)
@@ -384,14 +379,6 @@ GEM
       yard (~> 0.9, >= 0.9.24)
       yard-activesupport-concern (~> 0.0)
       yard-solargraph (~> 0.1)
-    sprockets (4.2.2)
-      concurrent-ruby (~> 1.0)
-      logger
-      rack (>= 2.2.4, < 4)
-    sprockets-rails (3.5.2)
-      actionpack (>= 6.1)
-      activesupport (>= 6.1)
-      sprockets (>= 3.0.0)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.9)
@@ -427,11 +414,6 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webpacker (5.4.4)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket (1.2.11)
     websocket-driver (0.8.0)
       base64
@@ -465,21 +447,21 @@ DEPENDENCIES
   devise (~> 4.7, >= 4.7.3)
   guard (~> 2.16, >= 2.16.2)
   guard-minitest (~> 2.4, >= 2.4.6)
+  importmap-rails
   jbuilder (~> 2.7)
   minitest-reporters (~> 1.4, >= 1.4.2)
   pg (~> 1.3)
   prettier
+  propshaft
   puma (~> 6.0)
   rails (~> 8.1.1)
   rubocop-rails-omakase
-  sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0)
   solargraph
   stimulus-rails (~> 1.3)
   turbo-rails (~> 2.0)
   tzinfo-data
   web-console
-  webpacker (~> 5.0)
 
 RUBY VERSION
    ruby 3.2.7p253
