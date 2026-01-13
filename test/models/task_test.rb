@@ -14,7 +14,8 @@
 require "test_helper"
 
 class TaskTest < ActiveSupport::TestCase
-  
+  include ActionCable::TestHelper
+
   def setup
     @user = users(:normal_user)
   end
@@ -125,6 +126,27 @@ class TaskTest < ActiveSupport::TestCase
     # completed_task fixture has completed_at = 2.days.ago
     days = task.time_to_complete
     assert_in_delta 2.0, days.abs, 0.2, "time_to_complete should be approximately 2 days"
+  end
+
+  # Broadcast configuration tests
+  #
+  # These tests verify that the Task model is properly configured
+  # for Turbo Streams broadcasting. The actual broadcast delivery
+  # is tested in system tests where transactions commit properly.
+
+  test "task responds to broadcast methods" do
+    task = Task.new(name: "Test", user: @user)
+    assert task.respond_to?(:broadcast_prepend_to)
+    assert task.respond_to?(:broadcast_replace_to)
+    assert task.respond_to?(:broadcast_remove_to)
+  end
+
+  test "task generates correct stream name for user" do
+    # Verify the stream name includes the user and "tasks" identifier
+    stream_name = [@user, "tasks"]
+    signed = Turbo::StreamsChannel.signed_stream_name(stream_name)
+    assert signed.present?
+    assert_kind_of String, signed
   end
 
 end

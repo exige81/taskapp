@@ -11,6 +11,8 @@
 #  updated_at   :datetime         not null
 #
 class Task < ApplicationRecord
+  include ActionView::RecordIdentifier
+
   belongs_to :user
 
   validates :name, presence: true
@@ -18,6 +20,11 @@ class Task < ApplicationRecord
   # Set completed_at when the completed flag changes.
   # Use the `if:` option so the callback only runs when `completed` actually changes.
   before_save :set_completed_at, if: :completed_changed?
+
+  # Broadcast changes to all connected clients for real-time updates
+  after_create_commit -> { broadcast_prepend_to(user, "tasks", target: "task-items", partial: "tasks/taskrow", locals: { task: self }) }
+  after_update_commit -> { broadcast_replace_to(user, "tasks", target: dom_id(self), partial: "tasks/taskrow", locals: { task: self }) }
+  after_destroy_commit -> { broadcast_remove_to(user, "tasks", target: dom_id(self)) }
 
   scope :todo, -> { where(completed: false).order(created_at: :desc)}
   scope :done, -> { where(completed: true).order(completed_at: :desc)}

@@ -1,14 +1,16 @@
+# Action Cable uses the async adapter for single-process deployments.
+# For multi-process/multi-server deployments, use Redis or Solid Cable.
+#
+# To switch to Solid Cable (database-backed) in the future:
+#   1. Add `gem "solid_cable"` to Gemfile
+#   2. Run `bin/rails solid_cable:install`
+#   3. Change adapter to `solid_cable` below
+
 development:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: taskapp_development
+  adapter: async
 
 test:
   adapter: async
 
 production:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: taskapp_production
-  ssl_params:
-    verify_mode: <%= OpenSSL::SSL::VERIFY_NONE %>
+  adapter: async
