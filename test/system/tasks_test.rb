@@ -126,6 +126,7 @@ class TasksTest < ApplicationSystemTestCase
     click_on "edit_task_#{@task.id}"
     fill_in "task_name",	with: "Edited Task"
     click_on "Update Task"
+    # After update, redirects to root_url (task list)
     within "div#task_#{@task.id}" do
       assert_text "Edited Task"
     end

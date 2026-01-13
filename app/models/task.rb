@@ -15,6 +15,8 @@ class Task < ApplicationRecord
 
   belongs_to :user
 
+  normalizes :name, with: -> { _1.strip }
+
   validates :name, presence: true
 
   # Set completed_at when the completed flag changes.

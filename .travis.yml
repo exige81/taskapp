@@ -1,23 +1,14 @@
 language: ruby
 cache:
   - bundler
-  - yarn
 services:
   - postgresql
-  - redis-server
-before_install:
-  nvm install 14.19.1
-  nvm use 14.19.1
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
   - bundle install --jobs=3 --retry=3
-  - yarn install --frozen-lockfile
   - bundle exec rake db:create
   - bundle exec rake db:schema:load
-  - bin/rails webpacker:compile
 script:
   - bundle exec rake test
   - bundle exec rake test:system
-
-  

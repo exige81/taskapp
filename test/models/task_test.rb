@@ -149,4 +149,25 @@ class TaskTest < ActiveSupport::TestCase
     assert_kind_of String, signed
   end
 
+  # Normalization tests
+  test "normalizes strips leading whitespace from name" do
+    task = Task.new(name: "  leading spaces", user: @user)
+    assert_equal "leading spaces", task.name
+  end
+
+  test "normalizes strips trailing whitespace from name" do
+    task = Task.new(name: "trailing spaces  ", user: @user)
+    assert_equal "trailing spaces", task.name
+  end
+
+  test "normalizes strips both leading and trailing whitespace" do
+    task = Task.new(name: "  surrounded  ", user: @user)
+    assert_equal "surrounded", task.name
+  end
+
+  test "normalizes preserves internal whitespace" do
+    task = Task.new(name: "multiple  internal   spaces", user: @user)
+    assert_equal "multiple  internal   spaces", task.name
+  end
+
 end

@@ -8,7 +8,7 @@ gem 'rails', '~> 8.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.3'
 # Use Puma as the app server
-gem 'puma', '~> 6.0'
+gem 'puma', '~> 7.0'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -24,7 +24,7 @@ gem "stimulus-rails", "~> 1.3"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'devise', '~> 4.9'
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
@@ -52,7 +52,8 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver' ,'>=4.0.0'
-  # Easy installation and use of web drivers to run system tests with browsers
+  # Pin minitest to 5.x (6.0 has breaking changes)
+  gem 'minitest', '~> 5.0'
   gem 'minitest-reporters', '~> 1.4', '>= 1.4.2'
   gem 'guard', '~> 2.16', '>= 2.16.2'
   gem 'guard-minitest', '~> 2.4', '>= 2.4.6'

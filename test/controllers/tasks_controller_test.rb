@@ -72,12 +72,13 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to '/completed'
   end
 
-  test "update should redirect back when sort param used" do
-    skip
-    patch task_url(@task), 
-      params: { task: { name: @task.name } }, 
+  # Update uses a full-page form, so redirect_back would go to the edit page.
+  # Instead, we always redirect to root_url after successful update.
+  test "update should redirect to root after edit" do
+    patch task_url(@task),
+      params: { task: { name: @task.name } },
       headers: { "HTTP_REFERER" => "http://www.example.com/completed" }
-    assert_redirected_to '/completed'
+    assert_redirected_to root_url
   end
 
   test "create should redirect back when sort param used" do
