@@ -5,8 +5,10 @@ ruby '~> 3.3.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 8.1.1'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 1.3'
+# Use SQLite as the database for Active Record
+gem 'sqlite3', '~> 2.0'
+# SQLite-backed Action Cable adapter
+gem 'solid_cable'
 # Use Puma as the app server
 gem 'puma', '~> 7.0'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -27,6 +29,8 @@ gem "stimulus-rails", "~> 1.3"
 gem 'devise', '~> 4.9'
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+# Deploy with Kamal [https://kamal-deploy.org]
+gem "kamal", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
