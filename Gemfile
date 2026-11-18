@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 4.0.9'
 
@@ -19,13 +18,7 @@ gem "importmap-rails"
 gem "turbo-rails", "~> 2.0"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails", "~> 1.3"
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+# Authentication [https://github.com/heartcombo/devise]
 gem 'devise', '~> 4.9'
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -48,10 +41,6 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console'
-
-  # gem 'annotate', '~> 3.2'
-  gem 'prettier'
-  gem 'solargraph'
 end
 
 group :test do
@@ -61,8 +50,6 @@ group :test do
   # Pin minitest to 5.x (6.0 has breaking changes)
   gem 'minitest', '~> 5.0'
   gem 'minitest-reporters', '~> 1.4', '>= 1.4.2'
-  gem 'guard', '~> 2.16', '>= 2.16.2'
-  gem 'guard-minitest', '~> 2.4', '>= 2.4.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
