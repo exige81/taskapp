@@ -67,8 +67,9 @@ class TasksController < ApplicationController
 
   private
 
+  # Scoped to the signed-in user so one user can't reach another's tasks (404).
   def set_task
-    @task = Task.find(params[:id])
+    @task = Current.user.tasks.find(params[:id])
   end
 
   # Gets task based on /:sort parameter

@@ -23,6 +23,26 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_session_path
   end
 
+  test "cannot view, change, or delete another user's task" do
+    sign_out
+    sign_in_as users(:other_user)
+
+    get task_url(@task)
+    assert_response :not_found
+    get edit_task_url(@task)
+    assert_response :not_found
+    patch task_url(@task), params: { task: { name: "Hijacked" } }
+    assert_response :not_found
+    post toggle_task_url(@task), as: :turbo_stream
+    assert_response :not_found
+    assert_no_difference("Task.count") { delete task_url(@task) }
+    assert_response :not_found
+
+    @task.reload
+    assert_equal "Task One", @task.name
+    assert_not @task.completed?
+  end
+
   test "should create task" do
     assert_difference("Task.count") do
       post tasks_url, params: { task: { name: @task.name } }
