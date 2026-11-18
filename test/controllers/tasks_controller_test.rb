@@ -24,7 +24,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create task" do
-    assert_difference('Task.count') do
+    assert_difference("Task.count") do
       post tasks_url, params: { task: { name: @task.name } }
     end
 
@@ -47,7 +47,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy task" do
-    assert_difference('Task.count', -1) do
+    assert_difference("Task.count", -1) do
       delete task_url(@task)
     end
 
@@ -63,13 +63,13 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should accept sort param" do
-    get '/all'
+    get "/all"
     assert_response :success
   end
 
   test "delete should redirect back when sort param used" do
     delete task_url(@task), headers: { "HTTP_REFERER" => "http://www.example.com/completed" }
-    assert_redirected_to '/completed'
+    assert_redirected_to "/completed"
   end
 
   # Update uses a full-page form, so redirect_back would go to the edit page.
@@ -82,10 +82,9 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create should redirect back when sort param used" do
-    post tasks_url, 
+    post tasks_url,
         params: { task: { name: @task.name } },
         headers: { "HTTP_REFERER" => "http://www.example.com/completed" }
-    assert_redirected_to '/completed'
+    assert_redirected_to "/completed"
   end
-
 end

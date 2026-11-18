@@ -28,17 +28,17 @@ class Task < ApplicationRecord
   after_update_commit -> { broadcast_replace_to(user, "tasks", target: dom_id(self), partial: "tasks/taskrow", locals: { task: self }) }
   after_destroy_commit -> { broadcast_remove_to(user, "tasks", target: dom_id(self)) }
 
-  scope :todo, -> { where(completed: false).order(created_at: :desc)}
-  scope :done, -> { where(completed: true).order(completed_at: :desc)}
+  scope :todo, -> { where(completed: false).order(created_at: :desc) }
+  scope :done, -> { where(completed: true).order(completed_at: :desc) }
   # scope :all_tasks, -> { todo + done }
-  scope :all_tasks, -> { order(:completed, completed_at: :desc, created_at: :desc)}
+  scope :all_tasks, -> { order(:completed, completed_at: :desc, created_at: :desc) }
 
   # Time in days from created to completed
   def time_to_complete
     # Time in days from created to completed. Use 86400 seconds per day.
     completed && completed_at ? ((Time.zone.now - completed_at) / 86_400.0) : nil
   end
-  
+
   def newly_complete?
     completed? && completed_previously_changed? ? true : false
   end
@@ -52,6 +52,4 @@ class Task < ApplicationRecord
     def set_completed_at
       self.completed_at = completed ? Time.zone.now : nil
     end
-
-
 end
