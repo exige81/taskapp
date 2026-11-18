@@ -13,9 +13,11 @@
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :timeoutable, :trackable, :recoverable and :omniauthable
+  # :recoverable is omitted (no email provider) and public sign-up is disabled
+  # in routes; create users and reset passwords via the Rails console.
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :rememberable, :validatable, :lockable
 
   has_many :tasks
 end
