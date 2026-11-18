@@ -77,7 +77,6 @@ GEM
       uri (>= 0.13.1)
     addressable (2.8.8)
       public_suffix (>= 2.0.2, < 8.0)
-    ansi (1.5.0)
     ast (2.4.3)
     base64 (0.3.0)
     bcrypt (3.1.21)
@@ -159,11 +158,6 @@ GEM
     matrix (0.4.3)
     mini_mime (1.1.5)
     minitest (5.27.0)
-    minitest-reporters (1.7.1)
-      ansi
-      builder
-      minitest (>= 5.0)
-      ruby-progressbar
     msgpack (1.8.0)
     net-imap (0.6.0)
       date
@@ -392,7 +386,6 @@ DEPENDENCIES
   importmap-rails
   kamal
   minitest (~> 5.0)
-  minitest-reporters (~> 1.4, >= 1.4.2)
   propshaft
   puma (~> 7.0)
   rails (~> 8.1.4)

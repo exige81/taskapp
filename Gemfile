@@ -49,7 +49,6 @@ group :test do
   gem "selenium-webdriver", ">=4.0.0"
   # Pin minitest to 5.x (6.0 has breaking changes)
   gem "minitest", "~> 5.0"
-  gem "minitest-reporters", "~> 1.4", ">= 1.4.2"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
