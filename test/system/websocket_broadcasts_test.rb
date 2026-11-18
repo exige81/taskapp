@@ -25,7 +25,6 @@ class WebsocketBroadcastsTest < ApplicationSystemTestCase
   end
 
   test "task created in one session appears in another via broadcast" do
-
     Capybara.using_session(:browser_one) do
       sign_in @user
       visit root_url
@@ -46,7 +45,6 @@ class WebsocketBroadcastsTest < ApplicationSystemTestCase
   end
 
   test "task toggle in one session updates another via broadcast" do
-
     Capybara.using_session(:browser_one) do
       sign_in @user
       visit "/all"
@@ -70,7 +68,6 @@ class WebsocketBroadcastsTest < ApplicationSystemTestCase
   end
 
   test "task deleted in one session is removed from another via broadcast" do
-
     Capybara.using_session(:browser_one) do
       sign_in @user
       visit root_url

@@ -24,11 +24,11 @@ class TasksTest < ApplicationSystemTestCase
     fill_in "Name", with: "A Test Task"
     click_on "Add Task"
 
-    assert_selector 'div', text: "A Test Task"
+    assert_selector "div", text: "A Test Task"
   end
 
   test "Mark task complete and uncomplete" do
-    visit '/all'
+    visit "/all"
     check "toggle_task_#{@task.id}"
     within "div#task_#{@task.id}" do
       assert_selector "div.completed", count: 1
@@ -40,7 +40,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "strikethrough animation class applied on toggle" do
-    visit '/all'
+    visit "/all"
     # Task One starts as incomplete
     within "div#task_#{@task.id}" do
       assert_no_selector "div.strikethru"
@@ -62,7 +62,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "completed task sorts bottom" do
-    visit '/all'
+    visit "/all"
     # Make sure the task exists
     assert_selector "div#task_#{@task.id}", count: 1
 
