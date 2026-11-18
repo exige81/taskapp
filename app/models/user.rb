@@ -1,23 +1,12 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id                     :bigint           not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :timeoutable, :trackable, :recoverable and :omniauthable
-  # :recoverable is omitted (no email provider) and public sign-up is disabled
-  # in routes; create users and reset passwords via the Rails console.
-  devise :database_authenticatable, :registerable,
-         :rememberable, :validatable, :lockable
-
+  # Users are managed from the Rails console (`kamal console`); there is no
+  # public sign-up or email-based password reset.
+  has_secure_password
+  has_many :sessions, dependent: :destroy
   has_many :tasks
+
+  normalizes :email, with: ->(email) { email.strip.downcase }
+
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :password, length: { minimum: 6 }, allow_nil: true
 end

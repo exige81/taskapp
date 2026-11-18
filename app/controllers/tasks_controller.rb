@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!, except: [ :index ]
+  allow_unauthenticated_access only: :index
   before_action :set_task, only: [ :show, :edit, :update, :destroy, :toggle ]
   before_action :get_tasks, only: [ :index ]
 
   # GET /tasks
   def index
-    @tasks ||= current_user.tasks.all_tasks if user_signed_in?
-    @task = Task.new if user_signed_in?
+    @tasks ||= Current.user.tasks.all_tasks if authenticated?
+    @task = Task.new if authenticated?
   end
 
   # GET /tasks/1
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
   # POST /tasks
   def create
-    @task = current_user.tasks.new(task_params)
+    @task = Current.user.tasks.new(task_params)
 
     respond_to do |format|
       if @task.save
@@ -76,10 +76,10 @@ class TasksController < ApplicationController
     @sort = "all"
     return unless params[:sort]
     if params[:sort] == "incomplete"
-      @tasks = current_user.tasks.todo if user_signed_in?
+      @tasks = Current.user.tasks.todo if authenticated?
       @sort = "incomplete"
     elsif params[:sort] == "completed"
-      @tasks = current_user.tasks.done if user_signed_in?
+      @tasks = Current.user.tasks.done if authenticated?
       @sort = "completed"
     end
   end

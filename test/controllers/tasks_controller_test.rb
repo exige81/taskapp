@@ -4,7 +4,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @task = tasks(:one)
     @user = users(:normal_user)
-    sign_in @user
+    sign_in_as @user
   end
 
   test "should get index" do
@@ -18,9 +18,9 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "only allow signed in users" do
-    sign_out @user
+    sign_out
     get new_task_url
-    assert_redirected_to new_user_session_path
+    assert_redirected_to new_session_path
   end
 
   test "should create task" do

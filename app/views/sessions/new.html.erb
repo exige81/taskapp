@@ -1,0 +1,19 @@
+<div class="w-min mx-auto">
+  <h2 class="text-3xl mt-4">Log in</h2>
+
+  <%= form_with url: session_path do |f| %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, required: true, autofocus: true, autocomplete: "username", value: params[:email] %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, required: true, autocomplete: "current-password", maxlength: 72 %>
+    </div>
+
+    <div class="actions mt-2">
+      <%= f.submit "Log in", class: "btn-primary" %>
+    </div>
+  <% end %>
+</div>
