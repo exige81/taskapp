@@ -12,7 +12,7 @@ class WebsocketBroadcastsTest < ApplicationSystemTestCase
   end
 
   test "WebSocket subscription element is present when signed in" do
-    sign_in @user
+    sign_in_as @user
     visit root_url
     # Verify the turbo_stream_from helper creates the subscription element
     assert_selector "turbo-cable-stream-source", visible: :all
@@ -26,13 +26,13 @@ class WebsocketBroadcastsTest < ApplicationSystemTestCase
 
   test "task created in one session appears in another via broadcast" do
     Capybara.using_session(:browser_one) do
-      sign_in @user
+      sign_in_as @user
       visit root_url
       assert_selector "turbo-cable-stream-source", visible: :all
     end
 
     Capybara.using_session(:browser_two) do
-      sign_in @user
+      sign_in_as @user
       visit root_url
       fill_in "Name", with: "Broadcast test task"
       click_on "Add Task"
@@ -46,13 +46,13 @@ class WebsocketBroadcastsTest < ApplicationSystemTestCase
 
   test "task toggle in one session updates another via broadcast" do
     Capybara.using_session(:browser_one) do
-      sign_in @user
+      sign_in_as @user
       visit "/all"
       assert_selector "div#task_#{@task.id}"
     end
 
     Capybara.using_session(:browser_two) do
-      sign_in @user
+      sign_in_as @user
       visit "/all"
       check "toggle_task_#{@task.id}"
       within "div#task_#{@task.id}" do
@@ -69,13 +69,13 @@ class WebsocketBroadcastsTest < ApplicationSystemTestCase
 
   test "task deleted in one session is removed from another via broadcast" do
     Capybara.using_session(:browser_one) do
-      sign_in @user
+      sign_in_as @user
       visit root_url
       assert_selector "div#task_#{@task.id}"
     end
 
     Capybara.using_session(:browser_two) do
-      sign_in @user
+      sign_in_as @user
       visit root_url
       accept_confirm do
         click_on "delete_task_#{@task.id}"

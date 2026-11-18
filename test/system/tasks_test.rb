@@ -4,11 +4,11 @@ class TasksTest < ApplicationSystemTestCase
   setup do
     @task = tasks(:one)
     @user = users(:normal_user)
-    sign_in @user
+    sign_in_as @user
   end
 
   test "visit root url" do
-    sign_out @user
+    sign_out
     visit root_url
     # click_link "Log in"
     click_link "login_link"

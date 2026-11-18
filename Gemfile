@@ -18,8 +18,8 @@ gem "importmap-rails"
 gem "turbo-rails", "~> 2.0"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails", "~> 1.3"
-# Authentication [https://github.com/heartcombo/devise]
-gem "devise", "~> 4.9"
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+gem "bcrypt", "~> 3.1.7"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 # HTTP/2 proxy with asset caching and compression in front of Puma [https://github.com/basecamp/thruster/]
