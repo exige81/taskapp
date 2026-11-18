@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # Health check for kamal-proxy (must come before the '(/:sort)' catch-all).
+  get "up" => "rails/health#show", as: :rails_health_check
+
   resources :tasks do
     member do
       post :toggle

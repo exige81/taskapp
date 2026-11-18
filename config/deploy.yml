@@ -2,20 +2,21 @@
 service: taskapp
 
 # Name of the container image.
-# TODO: Replace with your Docker Hub username or registry path
-image: your-dockerhub-username/taskapp
+image: exige81/taskapp
 
 # Deploy to these servers.
 servers:
   web:
-    # TODO: Replace with your DigitalOcean droplet IP
-    - 192.168.0.1
+    - 167.172.212.193
 
 # Enable SSL auto certification via Let's Encrypt and allow for multiple apps on a single web server.
 proxy:
   ssl: true
-  # TODO: Replace with your domain
-  host: app.example.com
+  host: tasklist.justinrmiller.net
+  healthcheck:
+    path: /up
+    interval: 3
+    timeout: 3
 
 # Credentials for your image host.
 registry:
@@ -54,9 +55,3 @@ aliases:
 # Use a different ssh user than root
 # ssh:
 #   user: app
-
-healthcheck:
-  path: /up
-  port: 3000
-  max_attempts: 10
-  interval: 20s

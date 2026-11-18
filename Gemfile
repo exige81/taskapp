@@ -29,6 +29,8 @@ gem "stimulus-rails", "~> 1.3"
 gem 'devise', '~> 4.9'
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+# HTTP/2 proxy with asset caching and compression in front of Puma [https://github.com/basecamp/thruster/]
+gem "thruster", require: false
 # Deploy with Kamal [https://kamal-deploy.org]
 gem "kamal", require: false
 
